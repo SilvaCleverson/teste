@@ -1,273 +1,348 @@
 ![banner](./recursos/imagens/banner.jpg)
-# Primeros pasos en Sui
+# 🚀 BootCamp Español - Primeros Pasos en Sui
 
-## Introducción
+## 📚 Introducción
+
+¡Bienvenido al **BootCamp Español de Sui**! Este es un curso completo diseñado para que aprendas desde cero cómo desarrollar aplicaciones en la blockchain de Sui usando el lenguaje Move.
 
 **Sui** es una plataforma de blockchain y contratos inteligentes de **capa 1** diseñada para que la propiedad de activos digitales sea rápida, privada, segura y accesible.
 
 **Move** es un lenguaje de código abierto para escribir paquetes seguros para manipular objetos en la blockchain. Permite bibliotecas, herramientas y comunidades de desarrolladores comunes en blockchains con modelos de datos y ejecución muy diferentes.
 
-## Instalando un editor de código
+---
 
-Para este tutorial, instalaremos **Visual Studio Code**.
+## 🎯 Estructura del BootCamp
 
-1. Descarga el instalador para tu sistema operativo en la [página oficial de Visual Studio](https://code.visualstudio.com/)
-2. (Opcional) Recomendamos instalar las siguientes extensiones:
-    * [Move (Extension)](https://marketplace.visualstudio.com/items?itemName=mysten.move) es una extensión de servidor de lenguaje para Move mantenida por [Mysten Labs](https://www.mystenlabs.com/).
-    * [Move Formatter](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move) es un formateador de código para Move, desarrollado y mantenido por Mysten Labs.
-    * [Move Syntax](https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax) una simple extensión de resaltado de sintaxis para Move por [Damir Shamanaev](https://github.com/damirka/).
+Este bootcamp está organizado en **10 módulos progresivos** que te llevarán desde los conceptos básicos hasta temas avanzados:
 
-## Clonando este repositorio
+1. **00_intro** - Introducción a módulos y paquetes
+2. **01_variables** - Variables y constantes
+3. **02_referencias** - Referencias inmutables y mutables
+4. **03_tipos_primitivos** - Tipos de datos básicos
+5. **04_condicionales** - Estructuras condicionales
+6. **05_vectores** - Manejo de colecciones
+7. **06_strings** - Trabajo con cadenas de texto
+8. **07_structs** - Estructuras de datos personalizadas
+9. **08_habilidades** - Sistema de habilidades en Move
+10. **09_address** - Manejo de direcciones
+11. **10_funciones** - Funciones y visibilidad
+
+---
+
+## 📋 Cola de Comandos Rápidos (Cheat Sheet)
+
+> 💡 **Tip:** Para una referencia completa de comandos, consulta el archivo [`COMANDOS.md`](./COMANDOS.md)
+
+### ⚡ Instalación Rápida de Sui CLI
+
+**Para Mac y Linux:**
+```bash
+# Instalar suiup
+curl -sSfL https://raw.githubusercontent.com/Mystenlabs/suiup/main/install.sh | sh
+
+# Cargar variables de entorno (si es necesario)
+source ~/.sui/suiup/env
+
+# Instalar Sui CLI
+suiup install sui
+
+# Verificar instalación
+sui --version
+```
+
+**Para Windows (PowerShell):**
+```powershell
+# Descargar suiup desde: https://github.com/Mystenlabs/suiup/releases
+# Luego instalar Sui CLI
+suiup install sui
+
+# Verificar instalación
+sui --version
+```
+
+### 🔧 Comandos Esenciales del BootCamp
+
+```bash
+# Navegar a un tutorial
+cd backend/00_intro
+
+# Ejecutar tests de un módulo
+sui move test
+
+# Ver ayuda de Sui CLI
+sui --help
+
+# Ver versión instalada
+sui --version
+```
+
+### 📦 Comandos de Git (si trabajas con repositorio)
+
+```bash
+# Clonar repositorio
+git clone <url-del-repositorio>
+
+# Ver estado
+git status
+
+# Agregar cambios
+git add .
+
+# Hacer commit
+git commit -m "Mensaje descriptivo"
+
+# Subir cambios
+git push
+```
+
+---
+
+## 🛠️ Configuración Inicial
+
+### 1. Instalando un Editor de Código
+
+Para este bootcamp, recomendamos **Visual Studio Code**.
+
+1. Descarga el instalador para tu sistema operativo en la [página oficial de Visual Studio Code](https://code.visualstudio.com/)
+2. **Extensiones recomendadas** (opcional pero muy útil):
+    * [Move (Extension)](https://marketplace.visualstudio.com/items?itemName=mysten.move) - Extensión de servidor de lenguaje para Move mantenida por [Mysten Labs](https://www.mystenlabs.com/).
+    * [Move Formatter](https://marketplace.visualstudio.com/items?itemName=mysten.prettier-move) - Formateador de código para Move, desarrollado y mantenido por Mysten Labs.
+    * [Move Syntax](https://marketplace.visualstudio.com/items?itemName=damirka.move-syntax) - Extensión de resaltado de sintaxis para Move.
+
+### 2. Instalación de Git
 
 > :information_source: Asegúrate de tener acceso a una consola en tu computadora con permisos para instalación de software.
 
-## 1. Instalación de Git
-
-1. [Instalación en Mac](#macgit)
-2. [Instalación en Windows](#windowsgit)
-3. [Instalación en Linux](#linuxgit)
-
-## Instalación en Mac <a id="macgit"></a>
-
-1. Asegúrate de tener **Homebrew** instalado: [https://brew.sh/](https://brew.sh/).
-2. Abre una terminal e ingresa los siguientes comandos:
-```sh
+#### Mac
+```bash
+# Si tienes Homebrew instalado
 brew update
 brew install git
 ```
-3. Si necesitas más información sobre la instalación, puedes encontrarla en la documentación [oficial de Git](https://www.git-scm.com/download/mac).
 
-## Instalación en Windows <a id="windowsgit"></a>
+#### Windows
+Descarga el instalador en: [https://www.git-scm.com/download/win](https://www.git-scm.com/download/win)
 
-1. Descarga el instalador en la página oficial de Git: [https://www.git-scm.com/download/win](https://www.git-scm.com/download/win).
-2. Sigue las instrucciones indicadas. Las opciones predeterminadas del instalador generalmente son suficientes, pero si quieres personalizar tu instalación de alguna forma y sabes lo que estás haciendo, siéntete libre de cambiar lo que sea necesario.
-
-## Instalación en Linux <a id="linuxgit"></a>
-
-1. Para distribuciones basadas en Debian, como Ubuntu, puedes ejecutar los siguientes comandos:
+#### Linux (Ubuntu/Debian)
 ```bash
 sudo apt update
 sudo apt install git-all
 ```
-2. Si necesitas información sobre la instalación en alguna otra distribución específica, puedes encontrarla en la documentación [oficial de Git](https://git-scm.com/download/linux).
 
-## 2. Configurando Git
-
-Es una buena idea configurar los valores globales de tu usuario antes de comenzar a usar Git. Puedes hacerlo con los siguientes comandos.
-
-> :information_source: Recuerda sustituir los ejemplos con tus datos personales.
-```sh
-git config --global user.name "Nombre Ejemplo"
-git config --global user.email nombre@ejemplo.com
+**Configurar Git (solo la primera vez):**
+```bash
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
 ```
 
-## 3. Clonando el repositorio localmente
+### 3. Instalación de la Sui CLI
 
-En tu terminal, ejecuta el siguiente comando:
+#### 🍎 Mac
 
-```sh
-git clone https://github.com/AguaPotavel/sui-first-steps.git
-```
-
-> :information_source: Recuerda que puedes cambiar el directorio donde se clonará el repositorio. Utiliza `cd` para moverte entre los directorios de tu computadora, y `mkdir` para crear uno nuevo. </br></br>
-> Más información: [Tutorial de comandos básicos](https://aprendolinux.com/aprende-los-comandos-basicos-de-linux/).
-
-Una vez que el repositorio sea clonado, puedes navegar hasta él:
-```sh
-cd sui-first-steps
-```
-
-Para visualizar el contenido, puedes ejecutar el comando:
-
-```sh
-ls -a
-```
-
-Y para abrirlo en el editor de código (en nuestro caso, VS Code), puedes ejecutar:
-```sh
-code .
-```
-
-## 3. Instalación de la Sui CLI
-
-Para poder interactuar con el contenido de los tutoriales, es necesario instalar la **Sui CLI**.
-
-1. [Instalación en Mac](#maccli)
-2. [Instalación en Windows](#windowscli)
-3. [Instalación en Linux](#linuxcli)
-
-## Instalación en Mac <a id="maccli"></a>
-
-Podemos instalar Sui de dos maneras. Una usando la herramienta desarrollada por MystenLabs, `suiup`, y otra utilizando Homebrew. La recomendada para dar tus primeros pasos sin la necesidad de muchas configuraciones es `suiup`, sin embargo, esta herramienta no debe ser utilizada en ambientes de producción. Vamos a explorar ambas opciones.
-
-### `suiup`
-
-* Ejecuta el siguiente comando en tu terminal:
-```sh
+**Opción 1: Usando suiup (Recomendado)**
+```bash
+# Instalar suiup
 curl -sSfL https://raw.githubusercontent.com/Mystenlabs/suiup/main/install.sh | sh
-```
 
-* O puedes descargar los binarios e instalarlo manualmente directamente del [repositorio oficial de `suiup`](https://github.com/Mystenlabs/suiup/releases). Esta opción es un poco más avanzada, así que si nunca has instalado algo de forma similar, recomendamos usar el comando anterior.
+# Cargar variables de entorno
+source ~/.sui/suiup/env
 
-> :information_source: Si no sabes qué arquitectura tienes, puedes ejecutar el siguiente comando:
-> ```sh
-> uname -m
-> ```
-> * Si aparece **arm64** → Descarga suiup-macOS-arm64.tar.gz.
-> * Si aparece **x86_64** → Descarga suiup-macOS-x86_64.tar.gz.
-
-1. Puedes probar si la instalación de `suiup` fue exitosa ejecutando el siguiente comando:
-```sh
-suiup --version
-```
-
-2. Después de instalar `suiup`, independientemente de la opción elegida, ejecuta el siguiente comando para instalar la Sui CLI:
-```sh
+# Instalar Sui CLI
 suiup install sui
-```
 
-3. Y nuevamente, puedes probar si todo salió bien usando:
-```sh
+# Verificar
 sui --version
 ```
 
-### Homebrew
-
-1. Asegúrate de tener **Homebrew** instalado: [https://brew.sh/](https://brew.sh/).
-2. Abre una terminal e ingresa los siguientes comandos:
-```sh
+**Opción 2: Usando Homebrew**
+```bash
 brew update
 brew install sui
-```
-3. Puedes probar si todo fue instalado correctamente ejecutando:
-```sh
 sui --version
 ```
 
-## Instalación en Windows <a id="windowscli"></a>
+#### 🪟 Windows
 
-Podemos instalar Sui de dos maneras. Una usando la herramienta desarrollada por MystenLabs, `suiup`, y otra utilizando un gestor de paquetes como **Chocolatey**. La recomendada para dar tus primeros pasos sin la necesidad de muchas configuraciones es `suiup`, sin embargo, esta herramienta no debe ser utilizada en ambientes de producción. Vamos a explorar ambas opciones.
-
-### `suiup`
-
-1. Descarga el instalador directamente del [repositorio oficial de `suiup`](https://github.com/Mystenlabs/suiup/releases).
-
-> :information_source: Si no sabes qué arquitectura tienes, simplemente descarga el archivo `suiup-Windows-msvc-x86_64.zip`.
-
-2. Una vez instalado, abre una terminal y ejecuta el siguiente comando para verificar si todo salió bien:
-```sh
-suiup --version
-```
-> :information_source: Recomendamos usar PowerShell como terminal para ejecutar todos los comandos de este repositorio en Windows.
-
-3. Después de instalar `suiup`, ejecuta el siguiente comando para instalar la Sui CLI:
-```sh
+**Opción 1: Usando suiup (Recomendado)**
+1. Descarga `suiup-Windows-msvc-x86_64.zip` desde: [https://github.com/Mystenlabs/suiup/releases](https://github.com/Mystenlabs/suiup/releases)
+2. Extrae y agrega al PATH
+3. En PowerShell:
+```powershell
 suiup install sui
-```
-
-4. Y nuevamente, puedes probar si todo salió bien usando:
-```sh
 sui --version
 ```
 
-### `choco`
-
-1. Asegúrate de tener **Chocolatey** instalado: [https://chocolatey.org/install](https://chocolatey.org/install).
-2. Abre una terminal e ingresa el siguiente comando:
-```sh
+**Opción 2: Usando Chocolatey**
+```powershell
 choco install sui
-```
-3. Puedes probar si todo fue instalado correctamente ejecutando:
-```sh
 sui --version
 ```
 
-## Instalación en Linux <a id="linuxcli"></a>
+#### 🐧 Linux
 
-Podemos instalar Sui de dos maneras. Una usando la herramienta desarrollada por MystenLabs, `suiup`, y otra utilizando el gestor de paquetes para **Rust** llamado `cargo`. La recomendada para dar tus primeros pasos sin la necesidad de muchas configuraciones es `suiup`, sin embargo, esta herramienta no debe ser utilizada en ambientes de producción. Vamos a explorar ambas opciones.
-
-### `suiup`
-
-* Ejecuta el siguiente comando en tu terminal:
-```sh
+**Opción 1: Usando suiup (Recomendado)**
+```bash
+# Instalar suiup
 curl -sSfL https://raw.githubusercontent.com/Mystenlabs/suiup/main/install.sh | sh
-```
 
-* O puedes descargar los binarios e instalarlo manualmente directamente del [repositorio oficial de `suiup`](https://github.com/Mystenlabs/suiup/releases). Esta opción es un poco más avanzada, así que si nunca has instalado algo de forma similar, recomendamos usar el comando anterior.
+# Cargar variables de entorno
+source ~/.sui/suiup/env
 
-> :information_source: Si no sabes qué arquitectura tienes, puedes ejecutar el siguiente comando:
-> ```sh
-> uname -m
-> ```
-> * Si aparece **arm64** → Descarga `suiup-Linux-musl-arm64.tar.gz`.
-> * Si aparece **x86_64** → Descarga `suiup-Linux-musl-x86_64.tar.gz`.
-
-1. Puedes probar si la instalación de `suiup` fue exitosa ejecutando el siguiente comando:
-```sh
-suiup --version
-```
-
-2. Después de instalar `suiup`, independientemente de la opción elegida, ejecuta el siguiente comando para instalar la Sui CLI:
-```sh
+# Instalar Sui CLI
 suiup install sui
-```
 
-3. Y nuevamente, puedes probar si todo salió bien usando:
-```sh
+# Verificar
 sui --version
 ```
 
-### `cargo`
-
-1. Asegúrate de tener `rustup` instalado: [https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install).
-2. Abre una terminal e ingresa los siguientes comandos:
-```sh
+**Opción 2: Usando Cargo (Rust)**
+```bash
 rustup update stable
 cargo install --git https://github.com/MystenLabs/sui.git sui --branch devnet
-```
-3. Puedes probar si todo fue instalado correctamente ejecutando:
-```sh
 sui --version
 ```
 
-## 4. Instalación de MVR
+### 4. Instalación de MVR (Move Registry)
 
-El **Move Registry** (MVR) es un gestor de paquetes para Move. Permite a cualquier persona publicar y utilizar paquetes publicados en nuevas aplicaciones desarrolladas con Move. 
-
-1. La forma de instalar `mvr` depende de cómo instalaste la CLI `sui`.
-
-* Si instalaste con `suiup` (independientemente de tu sistema operativo), ejecuta el siguiente comando:
-```sh
+**Si instalaste con suiup:**
+```bash
 suiup install mvr
-```
-
-* Si instalaste `sui` utilizando `cargo`, ejecuta el siguiente comando:
-```sh
-cargo install --locked --git https://github.com/mystenlabs/mvr --branch release mvr
-```
-
-* Por último, si realizaste la instalación manualmente descargando el instalador y **no** instalaste `suiup`, puedes descargar el instalador de `mvr` en el [repositorio oficial](https://github.com/MystenLabs/mvr/releases).
-
-2. Independientemente de la opción elegida, recuerda verificar si la instalación fue realizada correctamente:
-```sh
 mvr --version
 ```
 
-## 5. Interactuando con el repositorio.
+**Si instalaste con cargo:**
+```bash
+cargo install --locked --git https://github.com/mystenlabs/mvr --branch release mvr
+mvr --version
+```
 
-El repositorio está compuesto por varias carpetas con archivos para cada tutorial, simplemente navega hasta ellas usando `cd` y sigue las instrucciones dentro de ellas.</br></br>
-Cada tutorial posee un archivo `README.md` con instrucciones claras de cómo interactuar con ellos.
+---
 
-## Créditos
+## 🎓 Cómo Usar Este BootCamp
 
-Este repositorio es una traducción al español del proyecto original desarrollado por [WayLearnLatam](https://github.com/WayLearnLatam). Puedes encontrar el repositorio original en:
+### Paso 1: Clonar o Descargar el Repositorio
+
+```bash
+git clone https://github.com/SilvaCleverson/teste.git
+cd teste
+```
+
+### Paso 2: Navegar a un Tutorial
+
+```bash
+# Ejemplo: ir al tutorial de introducción
+cd backend/00_intro
+```
+
+### Paso 3: Leer las Instrucciones
+
+Cada tutorial tiene su propio `README.md` con:
+- Explicación del concepto
+- Instrucciones paso a paso
+- Ejercicios prácticos
+- Desafíos finales
+
+### Paso 4: Ejecutar el Código
+
+```bash
+# Desde el directorio del tutorial
+sui move test
+```
+
+### Paso 5: Experimentar y Aprender
+
+- Modifica el código
+- Prueba diferentes valores
+- Resuelve los desafíos propuestos
+- Consulta la documentación oficial cuando sea necesario
+
+---
+
+## 📖 Recursos Adicionales
+
+### Documentación Oficial
+- [Documentación de Sui](https://docs.sui.io/)
+- [Documentación de Move](https://move-language.github.io/move/)
+- [Sui Developer Portal](https://sui.io/developers)
+
+### Comunidad
+- [Discord de Sui](https://discord.gg/sui)
+- [Foro de Sui](https://forums.sui.io/)
+
+---
+
+## 🎯 Objetivos del BootCamp
+
+Al finalizar este bootcamp, serás capaz de:
+
+✅ Entender los conceptos fundamentales de Move y Sui  
+✅ Escribir contratos inteligentes básicos  
+✅ Trabajar con tipos de datos, estructuras y funciones  
+✅ Comprender el sistema de habilidades de Move  
+✅ Desarrollar aplicaciones descentralizadas en Sui  
+
+---
+
+## 💡 Consejos para Estudiantes
+
+1. **Sigue el orden**: Los tutoriales están diseñados para ser completados en secuencia
+2. **Experimenta**: No tengas miedo de modificar el código y ver qué pasa
+3. **Lee los comentarios**: Cada archivo `.move` tiene comentarios explicativos
+4. **Resuelve los desafíos**: Son fundamentales para consolidar el aprendizaje
+5. **Consulta la documentación**: Cuando tengas dudas, la documentación oficial es tu mejor amiga
+
+---
+
+## 🐛 Solución de Problemas Comunes
+
+### Error: "sui: command not found"
+**Solución:** Asegúrate de haber cargado las variables de entorno:
+```bash
+source ~/.sui/suiup/env
+```
+
+### Error al ejecutar `sui move test`
+**Solución:** Verifica que estás en el directorio correcto del tutorial y que tienes la Sui CLI instalada correctamente.
+
+### Problemas con Git en Windows
+**Solución:** Usa Git Bash o PowerShell como administrador.
+
+---
+
+## 📝 Notas Importantes
+
+- Este bootcamp está diseñado para **principiantes** pero también es útil como referencia para desarrolladores con experiencia
+- Todos los ejemplos están probados y funcionan correctamente
+- Los comandos están actualizados para la versión más reciente de Sui
+- Si encuentras algún error, por favor reporta el problema
+
+---
+
+## 🙏 Créditos
+
+Este repositorio es una traducción y adaptación al español del proyecto original desarrollado por [WayLearnLatam](https://github.com/WayLearnLatam).
 
 **Repositorio Original:** [https://github.com/WayLearnLatam/sui-first-steps](https://github.com/WayLearnLatam/sui-first-steps)
 
 Agradecemos al equipo WayLearnLatam por crear este excelente material educativo sobre Sui y Move.
 
+---
 
+## 📞 Soporte
 
-curl -sSfL https://raw.githubusercontent.com/Mystenlabs/suiup/main/install.sh | sh
-source ~/.sui/suiup/env
-suiup install sui
+Si tienes preguntas o necesitas ayuda:
+1. Revisa la documentación oficial
+2. Consulta los comentarios en el código
+3. Únete a la comunidad de Sui en Discord
+4. Consulta el archivo [`COMANDOS.md`](./COMANDOS.md) para referencia rápida
+
+---
+
+## 📄 Archivos de Referencia
+
+- **[COMANDOS.md](./COMANDOS.md)** - Cola completa de comandos para consulta rápida
+- **[backend/README.md](./backend/README.md)** - Guía de los tutoriales de backend
+
+---
+
+**¡Éxito en tu aprendizaje! 🚀**
