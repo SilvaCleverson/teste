@@ -1,0 +1,129 @@
+# Tipos primitivos
+
+## Ejecutando el tutorial
+
+> :information_source: Recuerda que debes navegar en tu terminal a este directorio:
+>```sh
+>cd backend/03_tipos_primitivos
+>```
+
+Accede a tu terminal y ejecuta el siguiente comando:
+
+```sh
+sui move test
+```
+
+Debes obtener el siguiente resultado:
+```sh
+INCLUDING DEPENDENCY Bridge
+INCLUDING DEPENDENCY SuiSystem
+INCLUDING DEPENDENCY Sui
+INCLUDING DEPENDENCY MoveStdlib
+BUILDING Tipos primitivos
+Running Move unit tests
+[debug] 1
+[debug] 2
+[debug] 3
+[debug] 1123456
+[debug] 51966
+[debug] 3200187904
+[debug] true
+[debug] false
+[debug] true
+[debug] false
+[ PASS    ] suiz3::tipos_primitivos::teste
+Test result: OK. Total tests: 1; passed: 1; failed: 0
+```
+
+## Tutorial
+
+### Enteros (Integers)
+
+Move soporta seis tipos de enteros sin signo: `u8`, `u16`, `u32`, `u64`, `u128` y `u256`. Los valores de estos tipos van de 0 a un máximo que depende del tamaño del tipo.
+
+|Tipo|Rango de valor|
+|---|---|
+| Entero de 8-bits sin signo, `u8` | 0 a 2<sup>8</sup> -1 |
+| Entero de 16-bits sin signo, `u16` | 0 a 2<sup>16</sup> -1 |
+| Entero de 32-bits sin signo, `u32` | 0 a 2<sup>32</sup> -1 |
+| Entero de 64-bits sin signo, `u64` | 0 a 2<sup>64</sup> -1 |
+| Entero de 128-bits sin signo, `u128` | 0 a 2<sup>128</sup> -1 |
+| Entero de 256-bits sin signo, `u256` | 0 a 2<sup>256</sup> -1 |
+
+### Valores literales (literals)
+
+Los valores literales para estos tipos se especifican como una secuencia de dígitos (por ejemplo, `123`) o como literales hexadecimales, por ejemplo, `0xAA`. El tipo del literal puede agregarse opcionalmente como un sufijo, por ejemplo, `123u8`. Si el tipo no se especifica, el compilador intentará inferirlo del contexto en que el literal se usa. Si el tipo no puede ser inferido, se asume que es `u64`.
+
+Los literales numéricos pueden ser separados por guiones bajos para agruparlos y facilitar la lectura. (por ejemplo,`1_234_5678`, `1_000u128`, `0xAB_CD_12_35`).
+
+Si un literal es demasiado grande para el rango de tamaño especificado (o inferido), se genera un error.
+
+### Operaciones aritméticas
+
+Para todas estas operaciones, ambos argumentos (los operandos izquierdo y derecho) deben ser del mismo tipo. Si necesitas operar enteros de tipos diferentes, tendrás que convertir uno de ellos primero.
+
+Todas las operaciones aritméticas abortan en lugar de comportarse como enteros matemáticos no se comportarían (por ejemplo, overflow, underflow, división por cero).
+
+|Sintaxis|Operación|Aborta si...|
+|---|---|---|
+|+| Adición | El resultado es demasiado grande para el tipo de dato. |
+|-| Sustracción | El resultado es menor que `0` |
+|*| Multiplicación | El resultado es demasiado grande para el tipo de dato. |
+|/| División | El divisor es `0` |
+|%| Módulo | El divisor es `0` |
+
+### Comparaciones
+
+Los tipos enteros son los *únicos* tipos en Move que pueden usar los operadores de comparación. Ambos argumentos deben ser del mismo tipo. Si necesitas comparar enteros de tipos diferentes, tendrás que convertir uno de ellos primero.
+
+|Sintaxis|Operación|
+|---|---|
+|<| Menor que |
+|>| Mayor que |
+|<=| Menor o igual que |
+|>=| Mayor o igual que |
+
+### Igualdades
+
+Ambos argumentos deben ser del mismo tipo. Si necesitas comparar enteros de tipos diferentes, tendrás que convertir uno de ellos primero.
+
+|Sintaxis|Operación|
+|---|---|
+|==| Igual|
+|!=| No igual|
+
+### Conversión (Cast)
+
+Los tipos enteros de un tamaño pueden ser convertidos en tipos enteros de otro tamaño. Los enteros son los *únicos* tipos de Move que soportan la conversión.
+
+Las conversiones no truncan. La conversión abortará si el resultado es demasiado grande para el tipo especificado.
+
+|Sintaxis|Operación|Aborta si...|
+|---|---|
+|`(e as T)`| Convierte la expresión entera `e` en un entero de tipo `T`| `e` es demasiado grande para ser representado como `T`|
+
+### Bool
+
+`bool` es el tipo primitivo de Move para valores booleanos verdadero y falso. Los literales para bool son `true` o `false`. `bool` soporta tres operaciones lógicas:
+
+|Sintaxis|Descripción|Expresión equivalente|
+|---|---|---|
+|`&&`|Comparación lógica **and**.|`p && q` es equivalente a `if (p) q else false`|
+|`\|\|`|Comparación lógica **or**.|`p \|\| q` es equivalente a `if (p) true else q`|
+|`!`|Negación lógica|`!p` es equivalente a `(p) false else true`|
+
+## Leyendo los recursos del tutorial
+
+Puedes encontrar la documentación para este tutorial dentro del archivo `sources/tipos_primitivos.move`. Cada una de las declaraciones tiene un comentario para ayudarte a entender cada uno de los temas abordados.
+
+## Desafío
+
+* Declara 1 valor entero **constante** con cualquier valor que quieras.
+* Declara 1 variable entera con cualquier valor que quieras.
+* Imprime ambos números.
+* Declara una variable que compare si esos números son iguales.
+* Declara una variable que compare si el 1º número es mayor que el segundo.
+* Declara una variable que compare si las 2 comparaciones anteriores son verdaderas.
+* Imprime el resultado de esta última variable.
+
+> :information_source: Recuerda guardar tus cambios en el archivo para posteriormente hacer el `push` a tu repositorio de **Github**.
